@@ -210,7 +210,15 @@ function TechBotWidget() {
         }),
       });
 
-      const data = await response.json();
+      const responseText = await response.text();
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch {
+        throw new Error(
+          `TechBot API returned an empty or non-JSON response (HTTP ${response.status}). Redeploy the Vercel API function and check GEMINI_API_KEY.`
+        );
+      }
       if (!response.ok) {
         throw new Error(data?.error || `TechBot backend error (${response.status}).`);
       }

@@ -132,6 +132,20 @@ function send(response, status, body, origin) {
   response.end(JSON.stringify(body));
 }
 
+function isAllowedOrigin(origin, request) {
+  if (allowedOrigins.has(origin)) return true;
+
+  try {
+    const originUrl = new URL(origin);
+    const requestHost = request.headers["x-forwarded-host"] || request.headers.host;
+    const requestProtocol = request.headers["x-forwarded-proto"]?.split(",")[0] ||
+      (request.socket.encrypted ? "https" : "http");
+    return originUrl.host === requestHost && originUrl.protocol === `${requestProtocol}:`;
+  } catch {
+    return false;
+  }
+}
+
 function redactSensitiveDetails(details) {
   return details
     .replace(/\b(api[_-]?key|access[_-]?token|refresh[_-]?token|password|secret|authorization)\s*[:=]\s*(?:"[^"]*"|'[^']*'|[^\s,;]+)/gi, "$1=[redacted]")
@@ -596,6 +610,10 @@ function parseGeminiText(text, type) {
 }
 
 async function readRequestBody(request) {
+  if (request.body && typeof request.body === "object" && !Buffer.isBuffer(request.body)) {
+    return request.body;
+  }
+
   const chunks = [];
   let size = 0;
   for await (const chunk of request) {
@@ -629,9 +647,9 @@ function isRateLimited(request) {
   return current.count > RATE_LIMIT_REQUESTS;
 }
 
-const server = createServer(async (request, response) => {
+async function handleRequest(request, response) {
   const origin = request.headers.origin;
-  if (origin && !allowedOrigins.has(origin)) {
+  if (origin && !isAllowedOrigin(origin, request)) {
     send(response, 403, { error: "This origin is not allowed." });
     return;
   }
@@ -832,9 +850,13 @@ const server = createServer(async (request, response) => {
       error: error?.status ? error.message : "The request could not be processed.",
     }, origin);
   }
-});
+}
 
+const server = createServer(handleRequest);
+export default handleRequest;
 const HOST = process.env.HOST || "127.0.0.1";
-server.listen(PORT, HOST, () => {
-  console.log(`TechPickr recommendation backend listening at http://${HOST}:${PORT}`);
-});
+if (process.env.VERCEL !== "1") {
+  server.listen(PORT, HOST, () => {
+    console.log(`TechPickr recommendation backend listening at http://${HOST}:${PORT}`);
+  });
+}
