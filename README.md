@@ -4,7 +4,7 @@ TechPickr is a React + Vite PC and laptop advisor. Gemini chat runs through a sm
 
 ## Configure environment
 
-Use one project-root `.env` file for local configuration. Copy `.env.example` to `.env`, then set the Supabase values:
+Usee one project-root `.env` file for local configuration. Copy `.env.example` to `.env`, then set the Supabase values:
 
 ```dotenv
 VITE_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
