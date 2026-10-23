@@ -53,8 +53,7 @@
   box-shadow: 0 0 0 3px rgba(69, 215, 255, 0.13);
 }
 
-.account-submit,
-.account-google {
+.account-submit {
   min-height: 46px;
   padding: 10px 16px;
   border: 0;
@@ -65,15 +64,7 @@
   font-weight: 700;
 }
 
-.account-google {
-  width: 100%;
-  margin-top: 12px;
-  border: 1px solid var(--border);
-  background: transparent;
-}
-
-.account-submit:disabled,
-.account-google:disabled {
+.account-submit:disabled {
   cursor: wait;
   opacity: 0.65;
 }
@@ -107,23 +98,6 @@
 .account-error {
   background: rgba(255, 107, 125, 0.12);
   color: #ffb4bf;
-}
-
-.account-google-separator {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 18px 0 4px;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-}
-
-.account-google-separator::before,
-.account-google-separator::after {
-  height: 1px;
-  flex: 1;
-  background: var(--border);
-  content: "";
 }
 
 .saved-list {

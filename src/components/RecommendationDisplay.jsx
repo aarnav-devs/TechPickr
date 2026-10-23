@@ -391,14 +391,6 @@ export default function RecommendationDisplay({ type, userInput, result }) {
         </section>
       )}
 
-      <aside className="ai-recommendation-disclaimer">
-        {isLaptop
-          ? "Laptop names, configurations and indicative prices come from the TechPickr catalog and are not checked live. The catalog has no product images, so images are deliberately not substituted. Amazon and Flipkart buttons open searches, not verified product listings. Confirm the exact configuration, current price, stock and return terms with the retailer before buying."
-          : pcComponents.length > 0
-            ? "PC component prices are indicative estimates, not live retailer quotes. Check the Amazon or Flipkart searches for current prices and stock. Confirm sockets, memory support, power requirements and physical fit before buying."
-            : "Gemini provides general PC component-selection guidance. It does not return verified product models, prices, availability, or compatibility."}
-      </aside>
-
       <div className="ai-recommendation-actions">
         <button type="button" className="ai-save-button" onClick={onSave} disabled={saving || saved || authLoading}>
           {saving ? "Saving…" : saved ? "Saved" : "Save Recommendation"}

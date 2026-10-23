@@ -76,26 +76,6 @@ export default function Login() {
     }
   }
 
-  async function signInWithGoogle() {
-    setError("");
-    if (!supabase) {
-      setError("Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.");
-      return;
-    }
-    setBusy(true);
-    try {
-      const redirectTo = `${window.location.origin}${import.meta.env.BASE_URL}${postLoginDestination.replace(/^\//, "")}`;
-      const { error: oauthError } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: { redirectTo },
-      });
-      if (oauthError) throw oauthError;
-    } catch (authError) {
-      setError(describeAuthError(authError));
-      setBusy(false);
-    }
-  }
-
   return (
     <main className="container account-page">
       <section className="account-card">
@@ -122,10 +102,6 @@ export default function Login() {
             {busy ? "Please wait…" : mode === "login" ? "Log in" : "Create account"}
           </button>
         </form>
-        <div className="account-google-separator">or</div>
-        <button className="account-google" type="button" onClick={signInWithGoogle} disabled={busy || loading}>
-          Continue with Google
-        </button>
         {message && <p className="account-message" role="status">{message}</p>}
         {error && <p className="account-error" role="alert">{error}</p>}
         <p className="account-switch">

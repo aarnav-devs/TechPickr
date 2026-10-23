@@ -14,8 +14,6 @@ VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY
 Set `GEMINI_API_KEY` in the same root `.env` for the backend. Keep it unprefixed: Vite exposes `VITE_` variables in browser code, so never use `VITE_GEMINI_API_KEY` or include the Gemini key in the frontend build. The root `.env` is ignored by Git; `.env.example` and `server/.env.example` are templates only.
 Restart the backend after changing `GEMINI_API_KEY` so the server loads the new value.
 
-Google sign-in is available on both the login and signup forms. Configure Google OAuth in the Supabase dashboard to enable it. Email/password authentication works independently.
-
 ## Supabase setup
 
 Create `public.profiles` and `public.saved_recommendations` using the schema described in the project request. Enable RLS. The app never creates or recreates tables. PC builds call the read-only `public.build_pc_recommendation` RPC from [`supabase/supabase/supabase/supabase/009_build_pc_recommendation.sql`](./supabase/supabase/supabase/supabase/009_build_pc_recommendation.sql), which expects the existing `public.components` table populated with rows whose `source_name` is `pc-part-dataset`. Apply that function to the existing database if it is not already installed; this project does not delete or recreate component tables. The RPC selects the least expensive eligible record in fixed per-category budget shares; it does not rank parts by workload or user priorities, and compatibility is explicitly marked as unverified. The offline build catalog shows rounded indicative price estimates with Amazon/Flipkart search links; these are not live retailer quotes. For database rows to show estimates, populate `specs.price_estimate_inr`, `specs.price_estimate_source`, and optionally `specs.price_estimate_checked_at`. Dataset USD prices are not converted and shown as Indian retail prices.
@@ -45,7 +43,7 @@ using ((select auth.uid()) = user_id);
 
 Do not grant anonymous access to profile or saved-recommendation data. The frontend sends the authenticated session and relies on RLS; list queries do not download other users' rows for client-side filtering. The PC component RPC is read-only and must be executable by the role used by the app; do not expose service-role credentials in the frontend.
 
-In Supabase Authentication settings, add your local and deployed app URLs to the allowed redirect URLs (for example, `http://localhost:5173/**` locally). Google sign-in redirects back to the page the user requested. Recommendation pages (`/build` and `/results`) require an authenticated account; unauthenticated visitors are sent to login.
+In Supabase Authentication settings, add your local and deployed app URLs to the allowed redirect URLs (for example, `http://localhost:5173/**` locally). Recommendation pages (`/build` and `/results`) require an authenticated account; unauthenticated visitors are sent to login.
 
 ## Install and run on Windows PowerShell
 
