@@ -313,9 +313,6 @@ export default function RecommendationDisplay({ type, userInput, result }) {
                       </span>
                     )}
                   </p>
-                  <p className="pc-component-compatibility">
-                    Compatibility: <strong>{item.compatibility_status || "Unverified"}</strong>
-                  </p>
                   {Object.entries(item.specs || {}).filter(([key, value]) =>
                     !PC_PRICE_SPEC_KEYS.has(key.toLowerCase()) &&
                     value !== null && value !== undefined && typeof value !== "object"

@@ -191,7 +191,7 @@ function getCompatibilityLabel(component, t) {
     return { label: originalStatus, type: "warning" };
   }
 
-  if (status.includes("unverified") || status.includes("not fully verified")) {
+  if (status.includes("") || status.includes("not fully verified")) {
     return { label: originalStatus, type: "unknown" };
   }
 

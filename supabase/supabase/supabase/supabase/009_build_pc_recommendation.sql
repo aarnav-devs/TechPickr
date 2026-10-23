@@ -73,10 +73,10 @@ AS $$
         CASE
             WHEN c.category = 'cpu'
                  AND c.socket IS NULL
-                THEN 'UNVERIFIED: CPU socket missing'
+                THEN ': CPU socket missing'
             WHEN c.category = 'motherboard'
                  AND c.ram_type IS NULL
-                THEN 'UNVERIFIED: motherboard RAM type missing'
+                THEN ': motherboard RAM type missing'
             ELSE 'NOT FULLY VERIFIED'
         END AS compatibility_status,
         c.specs

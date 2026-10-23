@@ -175,7 +175,7 @@ export function mapPcBuildResponse(rows, budgetMaxInr, requirements = {}) {
         : null,
       compatibility_status: typeof row.compatibility_status === "string"
         ? row.compatibility_status
-        : "UNVERIFIED: compatibility data unavailable",
+        : ": compatibility data unavailable",
       amazonUrl: amazonUrl || makeSearchUrl("amazon", row.model),
       flipkartUrl: flipkartUrl || makeSearchUrl("flipkart", row.model),
       amazonLinkType: getRetailerLinkType(amazonUrl, "amazon"),
@@ -631,7 +631,7 @@ export function generateFallbackPcBuild(budgetMaxInr, requirements = {}) {
       priceEstimateSource: "Indicative estimate; check Amazon/Flipkart listings",
       priceEstimateCheckedAt: null,
       priceType: "estimate",
-      compatibility_status: "UNVERIFIED: confirm compatibility before buying",
+      compatibility_status: ": confirm compatibility before buying",
       socket: item.socket || null,
       ram_type: item.ram_type || null,
       form_factor: item.form_factor || null,
