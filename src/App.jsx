@@ -63,8 +63,22 @@ function App() {
         {/* Existing laptop recommendation pages */}
         <Route path="/" element={<Home />} />
         <Route path="/why-us" element={<WhyUs />} />
-        <Route path="/build" element={<Questionnaire />} />
-        <Route path="/results" element={<Results />} />
+        <Route
+          path="/build"
+          element={
+            <ProtectedRoute>
+              <Questionnaire />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/results"
+          element={
+            <ProtectedRoute>
+              <Results />
+            </ProtectedRoute>
+          }
+        />
 
         {/* Existing 3D PC preview */}
         <Route path="/3d" element={<PcPreview />} />

@@ -26,9 +26,8 @@ export default function Login() {
   const [error, setError] = useState("");
   const returnTo = location.state?.returnTo || "/my-recommendations";
   const postLoginDestination = returnTo === "/results"
-    ? "/my-recommendations"
+    ? "/build"
     : returnTo;
-  const googleEnabled = import.meta.env.VITE_SUPABASE_GOOGLE_AUTH_ENABLED === "true";
 
   if (!loading && user) return <Navigate to={postLoginDestination} replace />;
 
@@ -85,7 +84,7 @@ export default function Login() {
     }
     setBusy(true);
     try {
-      const redirectTo = `${window.location.origin}${import.meta.env.BASE_URL}my-recommendations`;
+      const redirectTo = `${window.location.origin}${import.meta.env.BASE_URL}${postLoginDestination.replace(/^\//, "")}`;
       const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: { redirectTo },
@@ -123,14 +122,10 @@ export default function Login() {
             {busy ? "Please wait…" : mode === "login" ? "Log in" : "Create account"}
           </button>
         </form>
-        {googleEnabled && (
-          <>
-            <div className="account-google-separator">or</div>
-            <button className="account-google" type="button" onClick={signInWithGoogle} disabled={busy || loading}>
-              Continue with Google
-            </button>
-          </>
-        )}
+        <div className="account-google-separator">or</div>
+        <button className="account-google" type="button" onClick={signInWithGoogle} disabled={busy || loading}>
+          Continue with Google
+        </button>
         {message && <p className="account-message" role="status">{message}</p>}
         {error && <p className="account-error" role="alert">{error}</p>}
         <p className="account-switch">

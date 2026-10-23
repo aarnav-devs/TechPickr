@@ -9,13 +9,12 @@ Use one project-root `.env` file for local configuration. Copy `.env.example` to
 ```dotenv
 VITE_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
 VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY
-VITE_SUPABASE_GOOGLE_AUTH_ENABLED=false
 ```
 
 Set `GEMINI_API_KEY` in the same root `.env` for the backend. Keep it unprefixed: Vite exposes `VITE_` variables in browser code, so never use `VITE_GEMINI_API_KEY` or include the Gemini key in the frontend build. The root `.env` is ignored by Git; `.env.example` and `server/.env.example` are templates only.
 Restart the backend after changing `GEMINI_API_KEY` so the server loads the new value.
 
-Google sign-in is shown only when `VITE_SUPABASE_GOOGLE_AUTH_ENABLED=true` and Google OAuth is configured in the Supabase dashboard. Email/password authentication works independently.
+Google sign-in is available on both the login and signup forms. Configure Google OAuth in the Supabase dashboard to enable it. Email/password authentication works independently.
 
 ## Supabase setup
 
@@ -46,7 +45,7 @@ using ((select auth.uid()) = user_id);
 
 Do not grant anonymous access to profile or saved-recommendation data. The frontend sends the authenticated session and relies on RLS; list queries do not download other users' rows for client-side filtering. The PC component RPC is read-only and must be executable by the role used by the app; do not expose service-role credentials in the frontend.
 
-In Supabase Authentication settings, add your local and deployed callback URLs to the allowed redirect URLs. Local Vite uses `http://localhost:5173/my-recommendations`. If enabling Google, configure its provider credentials in Supabase first, then turn on the frontend flag.
+In Supabase Authentication settings, add your local and deployed app URLs to the allowed redirect URLs (for example, `http://localhost:5173/**` locally). Google sign-in redirects back to the page the user requested. Recommendation pages (`/build` and `/results`) require an authenticated account; unauthenticated visitors are sent to login.
 
 ## Install and run on Windows PowerShell
 
