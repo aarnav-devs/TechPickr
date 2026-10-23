@@ -34,7 +34,6 @@ function Home() {
                 {t("home.exploreBuilds")}
               </Button>
             </div>
-            <p className="hero-note">{t("home.heroNote")}</p>
           </div>
         </div>
       </section>

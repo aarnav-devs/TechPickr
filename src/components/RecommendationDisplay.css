@@ -421,24 +421,6 @@
   font-size: 0.78rem;
 }
 
-.pc-build-compatibility {
-  margin-top: 18px;
-  padding: 14px 16px;
-  border: 1px solid rgba(255, 191, 105, 0.28);
-  border-radius: 12px;
-  background: var(--amber-soft);
-  color: #ffe0b2;
-  font-size: 0.84rem;
-  line-height: 1.55;
-}
-
-.pc-build-compatibility ul {
-  display: grid;
-  gap: 5px;
-  margin: 8px 0;
-  padding-left: 19px;
-}
-
 .pc-component-category {
   display: inline-block;
   margin-top: 4px;

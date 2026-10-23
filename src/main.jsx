@@ -5,6 +5,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import "./i18n.js";
 import "./index.css";
 import App from "./App.jsx";
+import "./brutalist-theme.css";
 
 const fallbackRoute = new URLSearchParams(window.location.search).get("route");
 if (fallbackRoute?.startsWith("/") && !fallbackRoute.startsWith("//")) {

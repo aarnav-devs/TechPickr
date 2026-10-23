@@ -91,10 +91,6 @@ export default function RecommendationDisplay({ type, userInput, result }) {
   const pcRemaining = knownPcTotal === null || knownPcTotal === undefined
     ? null
     : pcBudget - knownPcTotal;
-  const pcWarnings = Array.isArray(result.compatibilityWarnings)
-    ? result.compatibilityWarnings
-    : [];
-
   async function onSave() {
     if (requestPending.current || saved) return;
     requestPending.current = true;
@@ -188,20 +184,6 @@ export default function RecommendationDisplay({ type, userInput, result }) {
           </div>
           <p>Prices marked “estimate” are rounded catalog estimates, not live retailer quotes. Check Amazon or Flipkart for current prices and stock.</p>
         </div>
-      )}
-
-      {!isLaptop && pcGuidance.length > 0 && (
-        <aside className="pc-build-compatibility" role="note">
-          These are general component-selection approaches, not a priced or compatibility-checked parts list. Verify specific models, prices, and compatibility before purchase.
-        </aside>
-      )}
-
-      {!isLaptop && pcWarnings.length > 0 && (
-        <aside className="pc-build-compatibility" role="status">
-          <strong>Compatibility is not fully verified</strong>
-          <ul>{pcWarnings.map((warning) => <li key={warning}>{warning}</li>)}</ul>
-          <p>Confirm socket, memory support, power requirements, and case/GPU clearance with manufacturer specifications before purchase.</p>
-        </aside>
       )}
 
       {displayItems.length > 0 ? (
