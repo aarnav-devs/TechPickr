@@ -1,12 +1,12 @@
 .community-page {
-  --cm-bg: #0b0f16;
-  --cm-panel: #121924;
-  --cm-panel-raised: #17212e;
-  --cm-line: rgba(207, 220, 238, 0.12);
-  --cm-muted: #98a6b8;
-  --cm-text: #f1f5f9;
-  --cm-mint: #62d8aa;
-  --cm-mint-deep: #173f35;
+  --cm-bg: var(--bg);
+  --cm-panel: var(--surface);
+  --cm-panel-raised: var(--surface-strong);
+  --cm-line: var(--border);
+  --cm-muted: var(--text-muted);
+  --cm-text: var(--text);
+  --cm-mint: var(--accent-2);
+  --cm-mint-deep: var(--accent-soft);
   min-height: 100vh;
   padding: 0 0 92px;
   color: var(--cm-text);
@@ -1581,219 +1581,100 @@
   }
 }
 
-/* Match the shared light TechPickr theme while retaining mint accents. */
+/* Keep community surfaces and accents aligned with the shared TechPickr theme. */
 .community-page {
-  --cm-bg: #f6f7fb;
-  --cm-panel: #ffffff;
-  --cm-panel-raised: #f8fafc;
-  --cm-line: #e1e5ef;
-  --cm-muted: #55627a;
-  --cm-text: #0f172a;
-  --cm-mint: #047857;
-  --cm-mint-deep: #d1fae5;
-  color: var(--cm-text);
-  background: var(--cm-bg);
-}
-
-.community-page :is(h1, h2, h3, p, span, small, strong, button, label, legend, th, td, dd, dt, kbd, a) {
-  color: var(--cm-text);
-}
-
-.community-page :is(.cm-hero, .cm-search, .cm-pick, .cm-view-tabs, .cm-view-tabs button.active,
-.cm-categories button, .cm-filters, .cm-filter input, .cm-filter select, .cm-field input,
-.cm-field select, .cm-field textarea, .cm-card, .cm-image-fallback, .cm-state,
-.cm-compare-dock, .cm-dialog, .cm-close, .cm-preview-card, .cm-spec-fields,
-.cm-detail-gallery, .cm-gallery-thumbs button, .cm-compare-table thead th) {
-  color: var(--cm-text);
-  border-color: var(--cm-line);
-  background: #ffffff;
+  --cm-mint: var(--accent-2);
+  --cm-mint-deep: var(--accent-soft);
+  background:
+    radial-gradient(ellipse at 82% 6%, rgba(69, 215, 255, 0.1), transparent 32rem),
+    var(--bg);
 }
 
 .community-page .cm-hero {
-  background: linear-gradient(120deg, #ffffff, #f6f7fb);
+  border-color: var(--border);
+  background:
+    radial-gradient(ellipse at 78% 12%, rgba(69, 215, 255, 0.12), transparent 34rem),
+    radial-gradient(ellipse at 12% 35%, rgba(124, 92, 255, 0.14), transparent 32rem),
+    linear-gradient(180deg, rgba(15, 19, 30, 0.76), rgba(4, 7, 13, 0.36));
 }
 
-.community-page .cm-prototype-notice,
-.community-page .cm-alert {
-  color: #065f46;
-  border-color: #a7f3d0;
-  background: #ecfdf5;
+.community-page :is(.cm-search, .cm-pick, .cm-view-tabs, .cm-filters, .cm-card,
+.cm-state, .cm-compare-dock, .cm-dialog, .cm-preview-card, .cm-spec-fields,
+.cm-detail-gallery, .cm-compare-table thead th) {
+  background-color: var(--cm-panel);
 }
 
-.community-page .cm-alert-error {
-  color: #991b1b;
-  border-color: #fecaca;
-  background: #fef2f2;
-}
-
-.community-page .cm-search {
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-}
-
-.community-page .cm-search input,
-.community-page .cm-filter input,
-.community-page .cm-filter select,
-.community-page .cm-field input,
-.community-page .cm-field select,
-.community-page .cm-field textarea {
-  color: var(--cm-text);
-  border-color: var(--cm-line);
-  background: #ffffff;
-}
-
-.community-page .cm-search input::placeholder,
-.community-page .cm-filter input::placeholder,
-.community-page .cm-field input::placeholder,
-.community-page .cm-field textarea::placeholder {
-  color: #64748b;
-}
-
-.community-page .cm-filter select option,
-.community-page .cm-field select option {
-  color: var(--cm-text);
-  background: #ffffff;
-}
-
-.community-page .cm-eyebrow,
-.community-page .cm-outline-button span,
-.community-page .cm-view-tabs span,
-.community-page .cm-pick > span:nth-child(2) > b,
-.community-page .cm-card-price,
-.community-page .cm-detail-price,
-.community-page .cm-compare-dock > span b {
-  color: #047857;
-}
-
-.community-page .cm-pick small,
-.community-page .cm-section-title > span,
-.community-page .cm-filter > span,
-.community-page .cm-card-meta,
-.community-page .cm-results-line,
-.community-page .cm-icon-button,
-.community-page .cm-compare-button,
-.community-page .cm-field > span small,
-.community-page .cm-spec-fields legend span,
-.community-page .cm-local-disclosure,
-.community-page .cm-preview-note,
-.community-page .cm-detail-date,
-.community-page .cm-seller small,
-.community-page .cm-compare-table tbody th,
-.community-page .cm-compare-table td {
-  color: #55627a;
-}
-
-.community-page .cm-pick strong,
-.community-page .cm-card-title,
-.community-page .cm-compare-table thead th {
-  color: #0f172a;
-}
-
-.community-page .cm-view-tabs button,
-.community-page .cm-categories button,
-.community-page .cm-text-button,
-.community-page .cm-compare-dock .cm-text-button {
-  color: #475569;
-}
-
-.community-page .cm-view-tabs button.active,
-.community-page .cm-categories button.active {
-  color: #065f46;
-  background: #d1fae5;
-}
-
-.community-page .cm-condition-used,
-.community-page .cm-condition-refurbished,
-.community-page .cm-condition-new,
-.community-page .cm-sample-tag {
-  color: #334155;
-  border-color: #cbd5e1;
-  background: #f1f5f9;
-}
-
-.community-page .cm-condition-new {
-  color: #065f46;
-  border-color: #a7f3d0;
-  background: #ecfdf5;
-}
-
-.community-page .cm-condition-used {
-  color: #92400e;
-  border-color: #fde68a;
-  background: #fffbeb;
-}
-
-.community-page .cm-condition-refurbished {
-  color: #3730a3;
-  border-color: #c7d2fe;
-  background: #eef2ff;
+.community-page :is(.cm-search, .cm-filters, .cm-card, .cm-dialog, .cm-spec-fields) {
+  border-color: var(--border);
 }
 
 .community-page .cm-primary-button {
-  color: #052e1b;
-  background: #6ee7b7;
+  color: #f6f8ff;
+  background: linear-gradient(120deg, var(--accent), #35bfff);
+  box-shadow: 0 10px 24px rgba(124, 92, 255, 0.22);
 }
 
 .community-page .cm-primary-button:hover:not(:disabled) {
-  color: #052e1b;
-  background: #a7f3d0;
+  color: #fff;
+  background: linear-gradient(120deg, #8d73ff, #5bdcff);
 }
 
 .community-page .cm-outline-button,
 .community-page .cm-secondary-button {
-  color: #0f172a;
-  border-color: var(--cm-line);
-  background: #ffffff;
+  color: var(--text);
+  border-color: var(--border);
+  background: rgba(255, 255, 255, 0.035);
 }
 
-.community-page .cm-detail-gallery,
-.community-page .cm-preview-image,
-.community-page .cm-card-image,
-.community-page .cm-pick-image {
-  background: #eef1f8;
+.community-page .cm-outline-button:hover,
+.community-page .cm-secondary-button:hover {
+  border-color: var(--border-strong);
+  background: var(--accent-soft);
 }
 
-.community-page .cm-detail-close {
-  color: #0f172a;
-  background: rgba(255, 255, 255, 0.94);
+.community-page .cm-view-tabs button.active,
+.community-page .cm-categories button.active {
+  color: #e8f7ff;
+  border-color: rgba(69, 215, 255, 0.4);
+  background: linear-gradient(120deg, rgba(124, 92, 255, 0.2), rgba(69, 215, 255, 0.12));
+}
+
+.community-page .cm-prototype-notice,
+.community-page .cm-alert {
+  color: #d5e8ff;
+  border-color: rgba(69, 215, 255, 0.2);
+  background: rgba(69, 215, 255, 0.07);
+}
+
+.community-page .cm-alert-error {
+  color: #ffc1c1;
+  border-color: rgba(255, 107, 125, 0.3);
+  background: rgba(120, 34, 46, 0.16);
+}
+
+.community-page .cm-condition-new {
+  color: #c3eaff;
+  border-color: rgba(69, 215, 255, 0.28);
+  background: rgba(35, 111, 150, 0.26);
 }
 
 .community-page .cm-image-fallback {
-  background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
-}
-
-.community-page .cm-image-fallback small {
-  color: #475569;
-}
-
-.community-page .cm-field-error {
-  color: #b91c1c;
+  background:
+    radial-gradient(circle at 26% 25%, rgba(124, 92, 255, 0.18), transparent 7rem),
+    linear-gradient(145deg, #202b3c, #111a28);
 }
 
 .community-page .cm-field input[type="file"]::file-selector-button {
-  color: #0f172a;
-  background: #e2e8f0;
-}
-
-.community-page .cm-local-disclosure {
-  color: #475569 !important;
-  background: #f1f5f9;
-}
-
-.community-page .cm-compare-dock {
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.14);
+  color: var(--text);
+  background: var(--surface-2);
 }
 
 .community-page .cm-overlay {
-  background: rgba(15, 23, 42, 0.42);
+  background: rgba(3, 7, 13, 0.78);
 }
 
-.community-page .cm-compare-table tbody th,
-.community-page .cm-compare-table td {
-  background: #ffffff;
-}
-
-.community-page :is(h1, h2, h3, p, button, a, label, span) {
-  overflow-wrap: anywhere;
+.community-page :is(.cm-card, .cm-pick, .cm-search, .cm-dialog) {
+  box-shadow: var(--shadow);
 }
 
 :lang(hi),
